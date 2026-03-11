@@ -3,1269 +3,1010 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmiveda | Building Telugu filmmakers' careers to scale</title>
-    
+    <title>Filmiveda | The Telugu Filmmaker's Hub</title>
+    <meta name="description" content="E-books, AI prompts, events, and resources for Telugu filmmakers. Start your filmmaking career with Filmiveda.">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
-            --primary-color: #0066FF;
-            --secondary-color: #00D4FF;
-            --text-primary: #0A0A0A;
-            --text-secondary: #6B7280;
-            --background: #FFFFFF;
-            --surface: #F9FAFB;
-            --border: #E5E7EB;
-            --accent: #3B82F6;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+            --accent: #E63946;
+            --accent-dark: #C1121F;
+            --gold: #F4A261;
+            --blue: #2B4EFF;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--background);
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background: var(--white);
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
-        /* Custom cursor */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            opacity: 0;
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.15s ease;
-            opacity: 0;
-        }
-        
-        /* Navigation */
+        /* ===== NAVBAR ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(229, 231, 235, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 1.25rem 0;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
         }
 
         nav.scrolled {
-            padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
-        
+
         .nav-container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
-        
+
         .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--black);
             text-decoration: none;
-            transition: all 0.3s ease;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
-        
-        .logo:hover {
-            color: var(--primary-color);
-            transform: translateY(-1px);
-        }
-        
+
+        .logo span { color: var(--accent); }
+
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
         }
-        
+
         .nav-links a {
             text-decoration: none;
-            color: var(--text-secondary);
+            color: var(--gray-600);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-cta {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.2);
-            position: relative;
-            overflow: hidden;
+            transition: color 0.2s;
         }
 
-        .nav-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 102, 255, 0.3);
+        .nav-links a:hover { color: var(--black); }
+
+        .nav-btn {
+            background: var(--black);
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: background 0.2s !important;
         }
 
-        .nav-cta:hover::before {
-            left: 100%;
-        }
+        .nav-btn:hover { background: var(--accent) !important; color: var(--white) !important; }
 
-        .mobile-menu-btn {
+        .hamburger {
             display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
             background: none;
             border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 2rem;
-            background: radial-gradient(ellipse at top, rgba(0, 102, 255, 0.03) 0%, transparent 50%);
-            position: relative;
-            overflow: hidden;
+            padding: 4px;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M 4 0 L 0 0 0 4" fill="none" stroke="%23f3f4f6" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.5;
-            animation: gridMove 20s linear infinite;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1.5rem 2rem;
+            z-index: 999;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(4px, 4px); }
-        }
-        
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-content {
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 102, 255, 0.1);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0, 102, 255, 0.2);
-            animation: pulse 3s infinite;
-        }
+        .mobile-menu.open { display: block; }
 
-        .hero-badge::before {
-            content: '🎬';
+        .mobile-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
             font-size: 1rem;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-100);
         }
 
-        .hero h1 .highlight {
-            position: relative;
+        .mobile-menu a:last-child { border-bottom: none; }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
             display: inline-block;
+            background: rgba(230, 57, 70, 0.08);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            margin-bottom: 2rem;
         }
 
-        .hero h1 .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 0.1em;
-            left: 0;
-            width: 100%;
-            height: 0.3em;
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-            opacity: 0.3;
-            z-index: -1;
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            max-width: 800px;
+            margin-bottom: 1.75rem;
         }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            line-height: 1.6;
+
+        .hero h1 .red { color: var(--accent); }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
             font-weight: 400;
         }
-        
-        .hero-buttons {
+
+        .hero-btns {
             display: flex;
             gap: 1rem;
-            margin-bottom: 3rem;
             flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
+
+        .btn-dark {
+            background: var(--black);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.25);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s;
+            border: 2px solid var(--black);
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 102, 255, 0.35);
-        }
+        .btn-dark:hover { background: var(--accent); border-color: var(--accent); }
 
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-        
-        .btn-secondary {
+        .btn-outline {
             background: transparent;
-            color: var(--text-primary);
-            padding: 1rem 2rem;
-            border: 2px solid var(--border);
-            border-radius: 12px;
+            color: var(--black);
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            border: 2px solid var(--gray-200);
+            transition: all 0.2s;
         }
-        
-        .btn-secondary:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.1);
-        }
-        
+
+        .btn-outline:hover { border-color: var(--black); }
+
         .hero-stats {
             display: flex;
             gap: 3rem;
-            color: var(--text-secondary);
-        }
-        
-        .stat {
-            text-align: left;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            display: block;
-            line-height: 1;
+            flex-wrap: wrap;
         }
 
-        .stat-label {
+        .stat-item .num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-item .label {
             font-size: 0.9rem;
+            color: var(--gray-400);
             font-weight: 500;
-            margin-top: 0.25rem;
-        }
-        
-        .hero-visual {
-            position: relative;
-            animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            width: 100%;
-            min-height: 400px;
+            margin-top: 0.2rem;
         }
 
-        .floating-cards {
-            position: relative;
-            height: 400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-        
-        .floating-card {
-            position: absolute;
-            background: white;
-            border-radius: 16px;
-            padding: 1.2rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(229, 231, 235, 0.5);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
+        /* ===== SECTION SHARED ===== */
+        section { padding: 6rem 2rem; }
 
-        .floating-card:hover {
-            transform: translateY(-5px) rotate(0deg) !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
+        .container { max-width: 1140px; margin: 0 auto; }
 
-        .card-1 {
-            top: 0;
-            left: 50%;
-            width: 200px;
-            transform: translateX(-50%) rotate(-2deg);
-            animation: float1 4s ease-in-out infinite;
-        }
-
-        .card-2 {
-            top: 120px;
-            left: 0;
-            width: 180px;
-            transform: rotate(1deg);
-            animation: float2 5s ease-in-out infinite;
-        }
-
-        .card-3 {
-            top: 120px;
-            right: 0;
-            width: 180px;
-            transform: rotate(-1deg);
-            animation: float3 6s ease-in-out infinite;
-        }
-
-        @keyframes float1 {
-            0%, 100% { transform: translateX(-50%) translateY(0px) rotate(-2deg); }
-            50% { transform: translateX(-50%) translateY(-10px) rotate(-2deg); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translateY(0px) rotate(1deg); }
-            50% { transform: translateY(-8px) rotate(1deg); }
-        }
-
-        @keyframes float3 {
-            0%, 100% { transform: translateY(0px) rotate(-1deg); }
-            50% { transform: translateY(-12px) rotate(-1deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
-            50% { transform: translateY(-20px) rotate(var(--rotation, 0deg)); }
-        }
-        
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 1rem;
         }
-        
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            border-radius: 12px;
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 560px;
+            line-height: 1.6;
+            margin-bottom: 3.5rem;
+        }
+
+        /* ===== EVENTS SECTION ===== */
+        .events { background: var(--gray-50); }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .event-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .event-type {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+        }
+
+        .event-type.offline { background: rgba(244,162,97,0.15); color: #C67A20; }
+        .event-type.online { background: rgba(43,78,255,0.1); color: var(--blue); }
+        .event-type.coming-soon { background: var(--gray-100); color: var(--gray-600); }
+
+        .event-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .event-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .event-meta span {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .event-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--black);
+            margin-bottom: 1.25rem;
+        }
+
+        .btn-register {
+            display: block;
+            text-align: center;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-register:hover { background: var(--accent); }
+
+        .btn-coming-soon {
+            display: block;
+            text-align: center;
+            background: var(--gray-100);
+            color: var(--gray-400);
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: not-allowed;
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .products-preview { background: var(--white); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-color: var(--black);
+        }
+
+        .product-card.coming-soon-card {
+            background: var(--gray-50);
+            opacity: 0.85;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--gray-900);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+        }
+
+        .product-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .product-card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--black);
+            margin-bottom: 1.25rem;
+        }
+
+        .product-price .from {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            margin-right: 0.25rem;
+        }
+
+        .btn-buy {
+            display: block;
+            text-align: center;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.75rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-buy:hover { background: var(--accent); }
+
+        .btn-notify {
+            display: block;
+            text-align: center;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 0.75rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: not-allowed;
+        }
+
+        .view-all-wrap { text-align: center; }
+
+        .btn-view-all {
+            display: inline-block;
+            border: 2px solid var(--black);
+            color: var(--black);
+            padding: 0.9rem 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .btn-view-all:hover { background: var(--black); color: var(--white); }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works { background: var(--black); color: var(--white); }
+
+        .how-it-works .section-label { color: var(--gold); }
+        .how-it-works .section-title { color: var(--white); }
+        .how-it-works .section-sub { color: rgba(255,255,255,0.6); }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .step-num {
+            width: 52px;
+            height: 52px;
+            background: var(--accent);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 0;
-        }
-        
-        .card-content {
-            color: var(--text-secondary);
-            line-height: 1.5;
-            font-size: 0.9rem;
-        }
-
-        .card-price {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            padding: 8rem 2rem;
-            background: var(--surface);
-            position: relative;
-        }
-
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 70% 30%, rgba(0, 102, 255, 0.05) 0%, transparent 50%);
-        }
-        
-        .newsletter-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .newsletter h2 {
-            font-size: 3rem;
             font-weight: 900;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-        
-        .newsletter p {
             font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
+            color: var(--white);
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
             line-height: 1.6;
         }
-        
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter { background: var(--gray-50); }
+
+        .newsletter-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter .section-title { margin-bottom: 0.75rem; }
+        .newsletter .section-sub { margin: 0 auto 2.5rem; }
+
         .newsletter-form {
             display: flex;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            background: white;
-            padding: 0.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
+            gap: 0;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
         }
-        
+
+        .newsletter-form:focus-within { border-color: var(--black); }
+
         .newsletter-form input {
             flex: 1;
             border: none;
-            padding: 1rem 1.5rem;
+            padding: 1rem 1.25rem;
             font-size: 1rem;
-            border-radius: 12px;
-            background: transparent;
-            color: var(--text-primary);
-        }
-        
-        .newsletter-form input:focus {
             outline: none;
-        }
-        
-        .newsletter-form button {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        
-        .newsletter-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+            font-family: inherit;
+            color: var(--black);
         }
 
-        .newsletter-note {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+        .newsletter-form button {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 1rem 1.75rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover { background: var(--accent); }
+
+        .success-msg {
+            display: none;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #166534;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
             margin-top: 1rem;
         }
 
-        /* Products Section */
-        .products {
-            padding: 8rem 2rem;
-            background: white;
-        }
-        
-        .products-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .newsletter-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-400);
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-        
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-        
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 24px;
-            padding: 3rem;
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
-
-        .product-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.02) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
-            border-color: rgba(0, 102, 255, 0.2);
-        }
-
-        .product-card:hover::after {
-            opacity: 1;
-        }
-        
-        .product-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .product-title {
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        
-        .product-description {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-        
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-        }
-        
-        .product-features {
-            list-style: none;
-            margin-bottom: 3rem;
-        }
-        
-        .product-features li {
-            padding: 0.75rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 2rem;
-            font-weight: 500;
-        }
-        
-        .product-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .product-cta {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .product-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
-        }
-
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
-            background: var(--text-primary);
-            color: white;
+            background: var(--black);
+            color: var(--white);
             padding: 4rem 2rem 2rem;
-            text-align: center;
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .footer-tagline {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-        
-        .footer-content {
+        .footer-top {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 3rem;
-            margin-bottom: 3rem;
-            text-align: left;
+            max-width: 1140px;
+            margin: 0 auto 3rem;
         }
-        
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
+
+        .footer-brand .logo { color: var(--white); display: block; margin-bottom: 1rem; }
+        .footer-brand .logo span { color: var(--accent); }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.8rem;
             font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1.25rem;
         }
-        
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
+
+        .footer-col a {
             display: block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
             margin-bottom: 0.75rem;
+            transition: color 0.2s;
             font-weight: 500;
         }
-        
-        .footer-section a:hover {
-            color: var(--secondary-color);
-        }
-        
+
+        .footer-col a:hover { color: var(--white); }
+
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1140px;
+            margin: 0 auto;
             padding-top: 2rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-align: center;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .floating-cards {
-                height: 200px;
-                margin: 1rem 0;
-            }
-
-            .floating-card {
-                padding: 1rem;
-            }
-
-            .card-1 {
-                width: 140px;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%) rotate(-1deg);
-            }
-
-            .card-2 {
-                width: 120px;
-                top: 80px;
-                left: 10px;
-            }
-
-            .card-3 {
-                width: 120px;
-                top: 80px;
-                right: 10px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-                gap: 2rem;
-            }
-
-            .newsletter h2,
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .product-card {
-                padding: 2rem;
-            }
-
-            .footer-content {
-                text-align: center;
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .scroll-animate {
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        
-        .scroll-animate.animate {
+
+        .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .scroll-animate.stagger-1 { transition-delay: 0.1s; }
-        .scroll-animate.stagger-2 { transition-delay: 0.2s; }
-        .scroll-animate.stagger-3 { transition-delay: 0.3s; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
 
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+
+            .hero { padding: 8rem 1.5rem 4rem; }
+            .hero h1 { font-size: 2.5rem; }
+
+            section { padding: 4rem 1.5rem; }
+
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+
+            .footer-bottom { flex-direction: column; text-align: center; }
+
+            .newsletter-form { flex-direction: column; }
+            .newsletter-form button { border-radius: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
 
+    <!-- NAV -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Filmiveda</a>
+            <a href="index.html" class="logo">Filmi<span>veda</span></a>
             <ul class="nav-links">
-                <li><a href="#products">Products</a></li>
-                <li><a href="#templates">Templates</a></li>
-                <li><a href="#ai-tools">AI Tools</a></li>
-                <li><a href="#newsletter">Newsletter</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#" class="nav-cta">Get Free Template</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#newsletter">Newsletter</a></li>
+                <li><a href="products.html" class="nav-btn">Browse All</a></li>
             </ul>
-            <button class="mobile-menu-btn">☰</button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">AI-Enabled Filmmaker's OS</div>
-                <h1>Turn your filmmaking <span class="highlight">knowledge</span> into revenue</h1>
-                <p class="hero-subtitle">Skip expensive film schools. Get actionable e-books, templates, and AI prompts used by 500+ Telugu filmmakers to create professional films on any budget.</p>
-                
-                <div class="hero-buttons">
-                    <a href="#newsletter" class="btn-primary">
-                        Start here
-                        <span>→</span>
-                    </a>
-                    <a href="#products" class="btn-secondary">
-                        Browse Products
-                        <span>↗</span>
-                    </a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Newsletter Readers</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">₹99</span>
-                        <span class="stat-label">Starting Price</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Instant Access</span>
-                    </div>
-                </div>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html#events">Events</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="index.html#newsletter">Newsletter</a>
+        <a href="products.html" style="color: var(--black); font-weight: 700;">Browse All Products →</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-tag">Telugu Filmmaker's Hub</div>
+        <h1>Build your filmmaking career — <span class="red">the smart way.</span></h1>
+        <p class="hero-sub">Events, e-books, AI prompts, and tools built for Telugu filmmakers who want to make great films without burning their savings.</p>
+        <div class="hero-btns">
+            <a href="products.html" class="btn-dark">Explore Products →</a>
+            <a href="index.html#events" class="btn-outline">See Upcoming Events</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="num">500+</div>
+                <div class="label">Newsletter Readers</div>
             </div>
-            
-            <div class="hero-visual">
-                <div class="floating-cards">
-                    <div class="floating-card card-1">
-                        <div class="card-header">
-                            <div class="card-icon">📝</div>
-                            <h3 class="card-title">Scene Writing</h3>
-                        </div>
-                        <div class="card-content">
-                            Master the art of compelling scene construction with practical templates.
-                        </div>
-                        <div class="card-price">₹149</div>
+            <div class="stat-item">
+                <div class="num">₹99</div>
+                <div class="label">Starting Price</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">100%</div>
+                <div class="label">Digital & Instant</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVENTS -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section-label">Events & Workshops</div>
+            <h2 class="section-title">Learn in person &amp; online</h2>
+            <p class="section-sub">Join live workshops, offline meetups, and online webinars designed specifically for Telugu filmmakers.</p>
+
+            <div class="events-grid">
+                <!-- OFFLINE EVENT 1 -->
+                <div class="event-card fade-up">
+                    <span class="event-type offline">Offline Workshop</span>
+                    <h3>Filmmaking Fundamentals</h3>
+                    <p>A hands-on full-day workshop covering script-to-screen essentials for independent Telugu filmmakers. Small batch, personal guidance.</p>
+                    <div class="event-meta">
+                        <span>📍 Hyderabad</span>
+                        <span>🗓 Coming Soon</span>
+                        <span>👥 Limited Seats</span>
                     </div>
-                    
-                    <div class="floating-card card-2">
-                        <div class="card-header">
-                            <div class="card-icon">🤖</div>
-                            <h3 class="card-title">AI Prompts</h3>
-                        </div>
-                        <div class="card-content">
-                            50+ curated prompts for screenwriting and story development.
-                        </div>
-                        <div class="card-price">₹99</div>
+                    <div class="event-price">₹999</div>
+                    <!-- IMPORTANT: Replace # below with your Razorpay/Instamojo payment link when ready -->
+                    <a href="#" class="btn-register">Register Now</a>
+                </div>
+
+                <!-- ONLINE WEBINAR -->
+                <div class="event-card fade-up">
+                    <span class="event-type online">Online Webinar</span>
+                    <h3>AI Tools for Telugu Filmmakers</h3>
+                    <p>Learn how to use AI tools like ChatGPT, Midjourney, and others to write better scripts, save time, and produce more with less budget.</p>
+                    <div class="event-meta">
+                        <span>💻 Online (Zoom)</span>
+                        <span>🗓 Coming Soon</span>
+                        <span>⏱ 2 Hours</span>
                     </div>
-                    
-                    <div class="floating-card card-3">
-                        <div class="card-header">
-                            <div class="card-icon">📋</div>
-                            <h3 class="card-title">Templates</h3>
-                        </div>
-                        <div class="card-content">
-                            Production-ready templates and checklists.
-                        </div>
-                        <div class="card-price">₹99</div>
+                    <div class="event-price">₹299</div>
+                    <!-- IMPORTANT: Replace # below with your webinar registration/payment link -->
+                    <a href="#" class="btn-register">Register Now</a>
+                </div>
+
+                <!-- COMING SOON EVENT -->
+                <div class="event-card fade-up">
+                    <span class="event-type coming-soon">Coming Soon</span>
+                    <h3>Telugu Cinema Business Masterclass</h3>
+                    <p>A deep dive into how Telugu cinema works as a business — distribution, OTT deals, funding, and monetizing your films independently.</p>
+                    <div class="event-meta">
+                        <span>📍 Hyderabad + Online</span>
+                        <span>🗓 2025</span>
                     </div>
+                    <div class="event-price">TBA</div>
+                    <span class="btn-coming-soon">Notify Me Soon</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="newsletter" id="newsletter">
-        <div class="newsletter-container">
-            <h2 class="scroll-animate">Want to join us?</h2>
-            <p class="scroll-animate">Join 500+ readers of The Wednesday Newsletter for tips, strategies, and resources to launch, grow, and monetize your filmmaking career.</p>
-            
-            <form class="newsletter-form scroll-animate">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">Start here</button>
-            </form>
-            
-            <p class="newsletter-note scroll-animate">I will never spam or sell your info. Ever.</p>
-        </div>
-    </section>
+    <!-- PRODUCTS PREVIEW -->
+    <section class="products-preview" id="products">
+        <div class="container">
+            <div class="section-label">Digital Products</div>
+            <h2 class="section-title">Tools built for filmmakers</h2>
+            <p class="section-sub">Download instantly after purchase. No waiting, no shipping. E-books and AI prompt packs delivered straight to your inbox.</p>
 
-    <section class="products" id="products">
-        <div class="products-container">
-            <div class="section-header scroll-animate">
-                <h2 class="section-title">Three more ways I can help you</h2>
-                <p class="section-subtitle">Practical tools and knowledge to accelerate your filmmaking journey</p>
-            </div>
-            
             <div class="products-grid">
-                <div class="product-card scroll-animate stagger-1">
-                    <div class="product-icon">📚</div>
-                    <h3 class="product-title">01. E-Books & Guides</h3>
-                    <p class="product-description">In-depth guides covering every aspect of filmmaking from script to screen, specifically designed for Telugu filmmakers.</p>
-                    <div class="product-price">₹99 - ₹149</div>
-                    <ul class="product-features">
-                        <li>Scene Writing Masterclass</li>
-                        <li>Low-Budget Filmmaking Guide</li>
-                        <li>AI Tools for Filmmakers</li>
-                        <li>Telugu Cinema Business</li>
-                    </ul>
-                    <a href="#" class="product-cta">View E-Books</a>
-                </div>
-                
-                <div class="product-card scroll-animate stagger-2">
-                    <div class="product-icon">📋</div>
-                    <h3 class="product-title">02. Templates & Tools</h3>
-                    <p class="product-description">Ready-to-use templates, calculators, and checklists to streamline your production process and save valuable time.</p>
-                    <div class="product-price">₹99 - ₹199</div>
-                    <ul class="product-features">
-                        <li>Script Breakdown Templates</li>
-                        <li>Budget Calculators</li>
-                        <li>Pre-production Checklists</li>
-                        <li>Marketing Templates</li>
-                    </ul>
-                    <a href="#" class="product-cta">Browse Templates</a>
-                </div>
-                
-                <div class="product-card scroll-animate stagger-3">
-                    <div class="product-icon">🤖</div>
-                    <h3 class="product-title">03. AI Prompt Library</h3>
-                    <p class="product-description">Curated AI prompts to enhance your creative process, boost productivity, and generate fresh ideas for your projects.</p>
+                <!-- E-BOOK 1 -->
+                <div class="product-card fade-up">
+                    <span class="product-emoji">📚</span>
+                    <h3>Scene Writing Masterclass</h3>
+                    <p>A practical guide to writing compelling scenes for Telugu films. Templates, examples, and exercises included.</p>
                     <div class="product-price">₹149</div>
-                    <ul class="product-features">
-                        <li>50+ Screenwriting Prompts</li>
-                        <li>Character Development</li>
-                        <li>Plot Generation</li>
-                        <li>Dialogue Enhancement</li>
-                    </ul>
-                    <a href="#" class="product-cta">Get AI Prompts</a>
+                    <!-- IMPORTANT: Replace # with your Gumroad product link for this e-book -->
+                    <a href="#" class="btn-buy">Buy & Download →</a>
+                </div>
+
+                <!-- AI PROMPTS PACK -->
+                <div class="product-card fade-up">
+                    <span class="product-emoji">🤖</span>
+                    <h3>AI Prompt Pack — Filmmakers Edition</h3>
+                    <p>50+ curated ChatGPT prompts for screenwriting, character building, dialogue, and story development.</p>
+                    <div class="product-price">₹99</div>
+                    <!-- IMPORTANT: Replace # with your Gumroad product link for this prompt pack -->
+                    <a href="#" class="btn-buy">Buy & Download →</a>
+                </div>
+
+                <!-- E-BOOK 2 -->
+                <div class="product-card fade-up">
+                    <span class="product-emoji">🎬</span>
+                    <h3>Low-Budget Filmmaking Guide</h3>
+                    <p>How to make a professional-looking Telugu film with under ₹5 lakhs. Real strategies, not theory.</p>
+                    <div class="product-price">₹149</div>
+                    <!-- IMPORTANT: Replace # with your Gumroad product link -->
+                    <a href="#" class="btn-buy">Buy & Download →</a>
+                </div>
+
+                <!-- TEMPLATES -->
+                <div class="product-card fade-up">
+                    <span class="product-emoji">📋</span>
+                    <h3>Production Templates Pack</h3>
+                    <p>Script breakdown, budget calculator, pre-production checklist, shooting schedule — all in one pack.</p>
+                    <div class="product-price"><span class="from">from</span>₹99</div>
+                    <!-- IMPORTANT: Replace # with your Gumroad/Instamojo link -->
+                    <a href="#" class="btn-buy">Buy & Download →</a>
+                </div>
+
+                <!-- COMING SOON: COURSES -->
+                <div class="product-card coming-soon-card fade-up">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="product-emoji">🎓</span>
+                    <h3>Filmmaking Courses</h3>
+                    <p>Full video courses on screenwriting, direction, and production for Telugu filmmakers. Hosted on Graphy.</p>
+                    <div class="product-price" style="color: var(--gray-400);">TBA</div>
+                    <span class="btn-notify">Notify Me</span>
+                </div>
+
+                <!-- COMING SOON: FILMIVEDA PRODUCTS -->
+                <div class="product-card coming-soon-card fade-up">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="product-emoji">🌟</span>
+                    <h3>Filmiveda Premium</h3>
+                    <p>Advanced resources, community access, and premium tools. A new range of products launching soon on filmiveda.com.</p>
+                    <div class="product-price" style="color: var(--gray-400);">TBA</div>
+                    <span class="btn-notify">Notify Me</span>
+                </div>
+            </div>
+
+            <div class="view-all-wrap">
+                <a href="products.html" class="btn-view-all">View All Products →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-label">How It Works</div>
+            <h2 class="section-title">Simple. Fast. Instant.</h2>
+            <p class="section-sub" style="color: rgba(255,255,255,0.6);">Get your resources in 3 easy steps. No accounts needed for most products.</p>
+            <div class="steps-grid">
+                <div class="step fade-up">
+                    <div class="step-num">1</div>
+                    <h3>Pick a product</h3>
+                    <p>Browse our e-books, prompt packs, or sign up for an event that fits your filmmaking goal.</p>
+                </div>
+                <div class="step fade-up">
+                    <div class="step-num">2</div>
+                    <h3>Pay securely</h3>
+                    <p>Pay via UPI, debit/credit card, or net banking through Razorpay or Instamojo. 100% secure.</p>
+                </div>
+                <div class="step fade-up">
+                    <div class="step-num">3</div>
+                    <h3>Download instantly</h3>
+                    <p>After payment, you get an automatic download link on screen and in your email. No waiting.</p>
+                </div>
+                <div class="step fade-up">
+                    <div class="step-num">4</div>
+                    <h3>Start creating</h3>
+                    <p>Apply what you learned. Build better scripts, better productions, better careers.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-inner">
+                <div class="section-label">The Wednesday Newsletter</div>
+                <h2 class="section-title">Tips in your inbox every week</h2>
+                <p class="section-sub">Join 500+ Telugu filmmakers who read The Wednesday Newsletter for practical tips, strategies, and resources — completely free.</p>
+
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="your@email.com" required id="email-input">
+                    <button type="submit">Subscribe Free</button>
+                </form>
+                <div class="success-msg" id="success-msg">
+                    🎉 You're in! Check your inbox for a welcome email.
+                </div>
+                <p class="newsletter-note">No spam. No selling your data. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-logo">Filmiveda</div>
-            <p class="footer-tagline">Building Telugu filmmakers' careers to scale</p>
-            
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Products</h3>
-                    <a href="#">E-Books</a>
-                    <a href="#">Templates</a>
-                    <a href="#">AI Prompts</a>
-                    <a href="#">All Products</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <a href="#">Free Templates</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Newsletter Archive</a>
-                    <a href="#">AI Tools Guide</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <a href="#">About Dheeraj</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <a href="#">Instagram</a>
-                    <a href="#">YouTube</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">WhatsApp</a>
-                </div>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">Filmi<span>veda</span></a>
+                <p>Building Telugu filmmakers' careers with practical resources, events, and tools — at prices that make sense.</p>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Filmiveda. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <a href="products.html">E-Books</a>
+                <a href="products.html">AI Prompts</a>
+                <a href="products.html">Templates</a>
+                <a href="products.html">Courses (Soon)</a>
             </div>
+            <div class="footer-col">
+                <h4>Events</h4>
+                <a href="index.html#events">Offline Workshops</a>
+                <a href="index.html#events">Online Webinars</a>
+                <a href="index.html#newsletter">Newsletter</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <!-- IMPORTANT: Replace # with your actual social media links -->
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+                <a href="#">WhatsApp</a>
+                <a href="about.html">About Dheeraj</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Filmiveda. All rights reserved.</p>
+            <p>Made for Telugu filmmakers ❤️</p>
         </div>
     </footer>
 
     <script>
-        // Custom cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            cursorDot.style.opacity = '1';
-
-            cursorOutline.style.left = `${posX}px`;
-            cursorOutline.style.top = `${posY}px`;
-            cursorOutline.style.opacity = '1';
-
-            cursorOutline.animate([
-                { left: `${posX}px`, top: `${posY}px` }
-            ], { duration: 500, fill: 'forwards' });
-        });
-
-        window.addEventListener('mouseout', () => {
-            cursorDot.style.opacity = '0';
-            cursorOutline.style.opacity = '0';
-        });
-
-        // Navbar scroll effect
+        // Navbar scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
         });
 
         // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
         // Newsletter form
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            alert('Thank you for subscribing! We\'ll be in touch soon.');
-            this.reset();
-        });
-
-        // Floating cards animation
-        document.querySelectorAll('.floating-card').forEach((card, index) => {
-            card.style.setProperty('--rotation', `${index % 2 === 0 ? '-' : ''}${2 + index}deg`);
-            
-            card.addEventListener('mouseenter', () => {
-                card.style.animation = 'none';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.animation = `float ${6 + index}s ease-in-out infinite${index % 2 === 0 ? ' reverse' : ''}`;
-            });
-        });
-
-        // Button ripple effects
-        document.querySelectorAll('.btn-primary, .btn-secondary, .product-cta, .nav-cta').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.pointerEvents = 'none';
-                
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
+            const email = document.getElementById('email-input').value;
+            // OPTIONAL: Connect to Mailchimp/ConvertKit by replacing the below with their embed code
+            document.getElementById('newsletter-form').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
         });
     </script>
 </body>

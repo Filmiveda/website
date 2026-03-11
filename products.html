@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Filmiveda</title>
+    <meta name="description" content="Browse all Filmiveda products — e-books, AI prompt packs, templates, and more for Telugu filmmakers.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+            --accent: #E63946;
+            --gold: #F4A261;
+            --blue: #2B4EFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .nav-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+        .nav-btn {
+            background: var(--black);
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+        }
+
+        .nav-btn:hover { background: var(--accent) !important; color: white !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--black); border-radius: 2px; }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1.5rem 2rem;
+            z-index: 999;
+        }
+        .mobile-menu.open { display: block; }
+        .mobile-menu a { display: block; text-decoration: none; color: var(--gray-600); font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid var(--gray-100); }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .page-header-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .page-header .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+
+        .page-header .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+        .page-header .breadcrumb a:hover { color: var(--black); }
+
+        .page-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* FILTER TABS */
+        .filter-section {
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 68px;
+            background: var(--white);
+            z-index: 100;
+        }
+
+        .filter-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--gray-100);
+            color: var(--gray-600);
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* PRODUCTS MAIN */
+        .products-main {
+            padding: 4rem 2rem 6rem;
+        }
+
+        .products-main-inner { max-width: 1140px; margin: 0 auto; }
+
+        /* CATEGORY SECTION */
+        .category-section { margin-bottom: 5rem; }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .category-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .category-count {
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+        }
+
+        /* PRODUCT CARDS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-color: var(--black);
+        }
+
+        .product-card.coming-soon { opacity: 0.75; }
+        .product-card.coming-soon:hover { transform: none; box-shadow: none; border-color: var(--gray-200); }
+
+        .product-img {
+            background: var(--gray-50);
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .product-img.ebook { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); }
+        .product-img.prompts { background: linear-gradient(135deg, #E8EAF6, #C5CAE9); }
+        .product-img.templates { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
+        .product-img.events { background: linear-gradient(135deg, #FCE4EC, #F8BBD0); }
+        .product-img.courses { background: linear-gradient(135deg, #E3F2FD, #BBDEFB); }
+
+        .product-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+        .product-tags { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+        }
+
+        .tag.ebook { background: #FFF3E0; color: #E65100; }
+        .tag.prompts { background: #E8EAF6; color: #3949AB; }
+        .tag.templates { background: #E8F5E9; color: #2E7D32; }
+        .tag.event-offline { background: rgba(244,162,97,0.2); color: #C67A20; }
+        .tag.event-online { background: rgba(43,78,255,0.1); color: var(--blue); }
+        .tag.coming-soon-tag { background: var(--gray-100); color: var(--gray-600); }
+
+        .product-body h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .product-body p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--black);
+        }
+
+        .product-price .from {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            margin-right: 0.2rem;
+        }
+
+        .product-price.free { color: #166534; }
+
+        .btn-buy-sm {
+            background: var(--black);
+            color: var(--white);
+            padding: 0.65rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-buy-sm:hover { background: var(--accent); }
+
+        .btn-soon-sm {
+            background: var(--gray-100);
+            color: var(--gray-400);
+            padding: 0.65rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: not-allowed;
+            white-space: nowrap;
+        }
+
+        /* RAZORPAY NOTE BOX */
+        .razorpay-note {
+            background: #FFF8F0;
+            border: 1px solid #FDDCB5;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .razorpay-icon { font-size: 2.5rem; flex-shrink: 0; }
+
+        .razorpay-note h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .razorpay-note p { color: var(--gray-600); font-size: 0.9rem; line-height: 1.6; }
+
+        /* COMING SOON SECTION */
+        .coming-soon-section {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .coming-soon-section h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-section p {
+            color: var(--gray-600);
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .coming-soon-items {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .coming-soon-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        .coming-soon-item span { margin-right: 0.4rem; }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1140px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand .logo { color: var(--white); display: block; margin-bottom: 1rem; }
+        .footer-brand .logo span { color: var(--accent); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.6; max-width: 280px; }
+
+        .footer-col h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; margin-bottom: 0.75rem; transition: color 0.2s; font-weight: 500; }
+        .footer-col a:hover { color: var(--white); }
+
+        .footer-bottom {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .coming-soon-section { padding: 2rem; }
+            .razorpay-note { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Filmi<span>veda</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#newsletter">Newsletter</a></li>
+                <li><a href="index.html#newsletter" class="nav-btn">Subscribe Free</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html#events">Events</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="index.html#newsletter">Newsletter</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> → Products
+            </div>
+            <h1>All Products</h1>
+            <p>E-books, AI prompts, templates, and more. Download instantly after purchase via Razorpay.</p>
+        </div>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div class="filter-section">
+        <div class="filter-inner">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ebooks">E-Books</button>
+            <button class="filter-btn" data-filter="prompts">AI Prompts</button>
+            <button class="filter-btn" data-filter="templates">Templates</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+        </div>
+    </div>
+
+    <!-- MAIN PRODUCTS -->
+    <div class="products-main">
+        <div class="products-main-inner">
+
+            <!-- RAZORPAY INFO BOX -->
+            <div class="razorpay-note">
+                <div class="razorpay-icon">⚡</div>
+                <div>
+                    <h3>Instant delivery via Razorpay</h3>
+                    <p>All digital products (e-books, prompt packs, templates) are delivered <strong>automatically after payment</strong>. You'll get a download link on screen and in your email immediately. No waiting, no manual steps.</p>
+                </div>
+            </div>
+
+            <!-- E-BOOKS SECTION -->
+            <div class="category-section" id="section-ebooks">
+                <div class="category-header">
+                    <h2>📚 E-Books & Guides</h2>
+                    <span class="category-count">3 products</span>
+                </div>
+                <div class="products-grid">
+
+                    <div class="product-card" data-category="ebooks">
+                        <div class="product-img ebook">📝</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag ebook">E-Book</span></div>
+                            <h3>Scene Writing Masterclass</h3>
+                            <p>Master the art of writing powerful scenes for Telugu films. Includes templates, examples, and practical exercises to improve your writing immediately.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹149</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link for this product -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="ebooks">
+                        <div class="product-img ebook">🎬</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag ebook">E-Book</span></div>
+                            <h3>Low-Budget Filmmaking Guide</h3>
+                            <p>Real strategies to make a professional Telugu short film or feature with under ₹5 lakhs. Based on actual productions, not theory.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹149</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="ebooks">
+                        <div class="product-img ebook">🤖</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag ebook">E-Book</span></div>
+                            <h3>AI Tools for Filmmakers — Guide</h3>
+                            <p>A beginner-friendly guide to using AI tools like ChatGPT, Midjourney, and others to speed up your pre-production and creative work.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹99</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- AI PROMPTS SECTION -->
+            <div class="category-section" id="section-prompts">
+                <div class="category-header">
+                    <h2>🤖 AI Prompt Packs</h2>
+                    <span class="category-count">2 products</span>
+                </div>
+                <div class="products-grid">
+
+                    <div class="product-card" data-category="prompts">
+                        <div class="product-img prompts">✨</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag prompts">AI Prompts</span></div>
+                            <h3>Screenwriting Prompt Pack</h3>
+                            <p>50+ ready-to-use ChatGPT prompts for writing scripts, building characters, generating dialogue, and developing plot ideas for Telugu films.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹99</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="prompts">
+                        <div class="product-img prompts">🎯</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag prompts">AI Prompts</span></div>
+                            <h3>Marketing Prompts for Filmmakers</h3>
+                            <p>30+ prompts to write compelling film descriptions, social media posts, press releases, and promotional content for your film using AI.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹149</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TEMPLATES SECTION -->
+            <div class="category-section" id="section-templates">
+                <div class="category-header">
+                    <h2>📋 Templates & Tools</h2>
+                    <span class="category-count">2 products</span>
+                </div>
+                <div class="products-grid">
+
+                    <div class="product-card" data-category="templates">
+                        <div class="product-img templates">📊</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag templates">Templates</span></div>
+                            <h3>Production Templates Pack</h3>
+                            <p>Script breakdown sheet, shooting schedule, budget calculator, and pre-production checklist. Everything you need before the camera rolls.</p>
+                            <div class="product-footer">
+                                <div class="product-price"><span class="from">from</span>₹99</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="templates">
+                        <div class="product-img templates">💰</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag templates">Templates</span></div>
+                            <h3>Film Marketing Templates</h3>
+                            <p>Social media content calendar, poster brief template, press kit template, and sponsorship proposal template — all editable in Google Docs.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹199</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Payment Page link -->
+                                <a href="#" class="btn-buy-sm">Buy Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EVENTS SECTION -->
+            <div class="category-section" id="section-events">
+                <div class="category-header">
+                    <h2>🎟 Events & Workshops</h2>
+                    <span class="category-count">2 products</span>
+                </div>
+                <div class="products-grid">
+
+                    <div class="product-card" data-category="events">
+                        <div class="product-img events">🎬</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag event-offline">Offline</span></div>
+                            <h3>Filmmaking Fundamentals Workshop</h3>
+                            <p>Full-day hands-on workshop in Hyderabad. Small group, personal guidance. Covers script, direction, production basics for independent filmmakers.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹999</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Event Page link -->
+                                <a href="#" class="btn-buy-sm">Register →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="events">
+                        <div class="product-img events">💻</div>
+                        <div class="product-body">
+                            <div class="product-tags"><span class="tag event-online">Online Webinar</span></div>
+                            <h3>AI Tools for Telugu Filmmakers</h3>
+                            <p>2-hour live webinar on using AI tools to speed up your pre-production, write better scripts, and create marketing content for your films.</p>
+                            <div class="product-footer">
+                                <div class="product-price">₹299</div>
+                                <!-- IMPORTANT: Replace # with your Razorpay Webinar Registration link -->
+                                <a href="#" class="btn-buy-sm">Register →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- COMING SOON SECTION -->
+            <div class="coming-soon-section">
+                <h2>More coming soon 🚀</h2>
+                <p>These products are being built right now. Subscribe to the newsletter to get notified the moment they launch.</p>
+                <div class="coming-soon-items">
+                    <div class="coming-soon-item"><span>🎓</span> Filmmaking Courses (Graphy)</div>
+                    <div class="coming-soon-item"><span>🌟</span> Filmiveda Premium</div>
+                    <div class="coming-soon-item"><span>📱</span> Telugu Cinema Business Course</div>
+                    <div class="coming-soon-item"><span>🎭</span> Acting Direction Guide</div>
+                </div>
+                <a href="index.html#newsletter" style="display:inline-block; background: var(--black); color: white; padding: 0.9rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 700;">Get Notified →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">Filmi<span>veda</span></a>
+                <p>Building Telugu filmmakers' careers with practical resources, events, and tools.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <a href="products.html">E-Books</a>
+                <a href="products.html">AI Prompts</a>
+                <a href="products.html">Templates</a>
+                <a href="products.html">Events</a>
+            </div>
+            <div class="footer-col">
+                <h4>More</h4>
+                <a href="index.html#events">Upcoming Events</a>
+                <a href="index.html#newsletter">Newsletter</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <!-- Replace # with actual social links -->
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+                <a href="#">WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Filmiveda. All rights reserved.</p>
+            <p>Made for Telugu filmmakers ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+        // Filter tabs
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card[data-category]');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show/hide category headers based on filter
+                document.querySelectorAll('.category-section').forEach(section => {
+                    if (filter === 'all') {
+                        section.style.display = '';
+                    } else {
+                        const sectionId = section.id;
+                        section.style.display = sectionId.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
