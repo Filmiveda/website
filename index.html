@@ -942,6 +942,262 @@
                 opacity: 0;
             }
         }
+
+        /* ===== FilmiWatch Promo Section ===== */
+        .filmiwatch-promo {
+            padding: 8rem 2rem;
+            background: #080808;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filmiwatch-promo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .filmiwatch-promo::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .filmiwatch-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .filmiwatch-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(251, 191, 36, 0.1);
+            color: #fbbf24;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            margin-bottom: 1.5rem;
+        }
+
+        .filmiwatch-headline {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .filmiwatch-headline span {
+            color: #fbbf24;
+        }
+
+        .filmiwatch-desc {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+        }
+
+        .filmiwatch-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #fbbf24;
+            color: #000000;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 30px rgba(251, 191, 36, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        .filmiwatch-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.45);
+            background: #fcd34d;
+        }
+
+        .filmiwatch-cta-btn .fw-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .filmiwatch-cta-btn:hover .fw-arrow {
+            transform: translateX(4px);
+        }
+
+        .filmiwatch-pills {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filmiwatch-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        /* App Mockup */
+        .filmiwatch-mockup {
+            position: relative;
+        }
+
+        .mockup-glow {
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .mockup-card {
+            background: #111111;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+
+        .mockup-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .mockup-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mockup-logo-icon {
+            width: 26px;
+            height: 26px;
+            background: #fbbf24;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .mockup-logo-text {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .mockup-free-tag {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.28);
+        }
+
+        .mockup-progress-bar {
+            height: 2px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .mockup-question {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.3;
+            margin-bottom: 0.4rem;
+        }
+
+        .mockup-sub {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 1.75rem;
+        }
+
+        .mockup-option {
+            border-radius: 14px;
+            padding: 0.9rem 1.1rem;
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mockup-option:last-child { margin-bottom: 0; }
+
+        .mockup-option-gold {
+            background: #fbbf24;
+            color: #000;
+        }
+
+        .mockup-option-green {
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.28);
+            color: #34d399;
+        }
+
+        .mockup-option-dark {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.65);
+        }
+
+        .mockup-option-title {
+            font-weight: 800;
+            font-size: 0.82rem;
+            line-height: 1.2;
+        }
+
+        .mockup-option-sub {
+            font-size: 0.68rem;
+            opacity: 0.6;
+            font-weight: 400;
+            margin-top: 0.2rem;
+        }
+
+        .mockup-arrow-icon { font-size: 0.9rem; flex-shrink: 0; margin-left: 0.75rem; }
+
+        @media (max-width: 768px) {
+            .filmiwatch-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .filmiwatch-headline { font-size: 2.2rem; }
+            .filmiwatch-mockup { order: -1; }
+        }
     </style>
 </head>
 <body>
@@ -957,6 +1213,7 @@
                 <li><a href="#ai-tools">AI Tools</a></li>
                 <li><a href="#newsletter">Newsletter</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="/products/filmiwatch" style="color:#fbbf24;font-weight:700;">FilmiWatch ✦</a></li>
                 <li><a href="#" class="nav-cta">Get Free Template</a></li>
             </ul>
             <button class="mobile-menu-btn">☰</button>
@@ -1103,6 +1360,70 @@
         </div>
     </section>
 
+    <!-- ===== FilmiWatch Section ===== -->
+    <section class="filmiwatch-promo" id="filmiwatch">
+        <div class="filmiwatch-inner">
+
+            <div class="scroll-animate">
+                <div class="filmiwatch-label">✦ Free · No signup needed</div>
+                <h2 class="filmiwatch-headline">
+                    Stop doom scrolling.<br><span>Just watch.</span>
+                </h2>
+                <p class="filmiwatch-desc">
+                    You've spent 20 minutes scrolling Netflix deciding what to watch — and ended up watching nothing. FilmiWatch asks you 6 questions about your mood, who you're with, and your platform, then gives you 3 perfect picks with direct OTT links. Done in 30 seconds.
+                </p>
+                <a href="/products/filmiwatch" class="filmiwatch-cta-btn">
+                    Find what to watch tonight <span class="fw-arrow">→</span>
+                </a>
+                <div class="filmiwatch-pills">
+                    <span class="filmiwatch-pill">6 questions</span>
+                    <span class="filmiwatch-pill">3 perfect picks</span>
+                    <span class="filmiwatch-pill">OTT links included</span>
+                    <span class="filmiwatch-pill">Free forever</span>
+                </div>
+            </div>
+
+            <div class="filmiwatch-mockup scroll-animate stagger-2">
+                <div class="mockup-glow"></div>
+                <div class="mockup-card">
+                    <div class="mockup-topbar">
+                        <div class="mockup-logo">
+                            <div class="mockup-logo-icon">F</div>
+                            <span class="mockup-logo-text">FilmiWatch</span>
+                        </div>
+                        <span class="mockup-free-tag">Free · No signup</span>
+                    </div>
+                    <div class="mockup-progress-bar"></div>
+                    <div class="mockup-question">What are you<br>watching tonight?</div>
+                    <div class="mockup-sub">6 questions. 3 perfect picks. 30 seconds.</div>
+                    <div class="mockup-option mockup-option-gold">
+                        <div>
+                            <div class="mockup-option-title">I want to watch something great</div>
+                            <div class="mockup-option-sub">Mood-based picks for general audience</div>
+                        </div>
+                        <span class="mockup-arrow-icon">→</span>
+                    </div>
+                    <div class="mockup-option mockup-option-green">
+                        <div>
+                            <div class="mockup-option-title">I have a subscription</div>
+                            <div class="mockup-option-sub">Pick your platform — we'll match what's on it</div>
+                        </div>
+                        <span class="mockup-arrow-icon">→</span>
+                    </div>
+                    <div class="mockup-option mockup-option-dark">
+                        <div>
+                            <div class="mockup-option-title">I'm a filmmaker — I learn from films</div>
+                            <div class="mockup-option-sub">Craft-first picks for directors, actors & writers</div>
+                        </div>
+                        <span class="mockup-arrow-icon">→</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ===== End FilmiWatch Section ===== -->
+
     <footer>
         <div class="footer-container">
             <div class="footer-logo">Filmiveda</div>
@@ -1114,7 +1435,7 @@
                     <a href="#">E-Books</a>
                     <a href="#">Templates</a>
                     <a href="#">AI Prompts</a>
-                    <a href="#">All Products</a>
+                    <a href="/products/filmiwatch">FilmiWatch</a>
                 </div>
                 
                 <div class="footer-section">

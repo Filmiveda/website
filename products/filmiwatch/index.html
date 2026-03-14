@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmiWatch | Find What to Watch Tonight — Filmiveda</title>
+    <meta name="description" content="6 questions. 3 perfect picks. Stop scrolling and start watching. FilmiWatch finds the right film or series for your exact mood, platform, and how much time you have.">
+    <link rel="preconnect" href="https://filmiwatch.vercel.app">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #080808;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .topbar {
+            background: #080808;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+        .topbar-back {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .topbar-back:hover { color: rgba(255,255,255,0.7); }
+        .topbar-divider { color: rgba(255,255,255,0.15); font-size: 0.78rem; }
+        .topbar-product { color: #fbbf24; font-size: 0.78rem; font-weight: 700; }
+        .topbar-right { font-size: 0.72rem; color: rgba(255,255,255,0.22); }
+        iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+            <a href="https://filmiveda.com" class="topbar-back">← Filmiveda</a>
+            <span class="topbar-divider">/</span>
+            <span class="topbar-product">FilmiWatch</span>
+        </div>
+        <span class="topbar-right">Free · No signup needed</span>
+    </div>
+    <iframe
+        src="https://filmiwatch.vercel.app"
+        title="FilmiWatch — Find What to Watch Tonight"
+        loading="eager"
+    ></iframe>
+</body>
+</html>
