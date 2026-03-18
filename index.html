@@ -437,6 +437,11 @@
     color:rgba(255,255,255,.45); padding:.3rem .85rem;
     border-radius:50px; font-size:.78rem; font-weight:500;
 }
+.fw-stats { display:flex; gap:2rem; margin-top:2rem; flex-wrap:wrap; }
+.fw-stat-item { display:flex; flex-direction:column; gap:.2rem; }
+.fw-stat-num { font-size:1.6rem; font-weight:800; color:#FFC700; letter-spacing:-.02em; line-height:1; }
+.fw-stat-label { font-size:.72rem; color:rgba(255,255,255,.38); font-weight:500; text-transform:uppercase; letter-spacing:.06em; }
+.fw-stat-divider { width:1px; background:rgba(255,255,255,.08); align-self:stretch; margin:0 .25rem; }
 .fw-mockup { position:relative; }
 .fw-glow {
     position:absolute; inset:-20px;
@@ -1223,6 +1228,22 @@
                 <span class="fw-pill">OTT links included</span>
                 <span class="fw-pill">Free · No signup</span>
             </div>
+            <div class="fw-stats">
+                <div class="fw-stat-item">
+                    <span class="fw-stat-num" data-target="2400">0</span>
+                    <span class="fw-stat-label">Filmmakers helped</span>
+                </div>
+                <div class="fw-stat-divider"></div>
+                <div class="fw-stat-item">
+                    <span class="fw-stat-num" data-target="48000">0</span>
+                    <span class="fw-stat-label">Hours saved</span>
+                </div>
+                <div class="fw-stat-divider"></div>
+                <div class="fw-stat-item">
+                    <span class="fw-stat-num" data-target="30">0</span>
+                    <span class="fw-stat-label">Seconds to a pick</span>
+                </div>
+            </div>
         </div>
         <div class="fw-mockup fi">
             <div class="fw-glow"></div>
@@ -1356,6 +1377,29 @@
         this.style.display = 'none';
         document.getElementById('nl-ok').style.display = 'block';
     });
+
+    // Stat counter animation
+    const statObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            const target = +el.dataset.target;
+            const duration = 1600;
+            const start = performance.now();
+            const isLarge = target >= 1000;
+            function tick(now) {
+                const p = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                const val = Math.floor(ease * target);
+                el.textContent = isLarge ? val.toLocaleString() + '+' : val + 's';
+                if (p < 1) requestAnimationFrame(tick);
+                else el.textContent = isLarge ? target.toLocaleString() + '+' : target + 's';
+            }
+            requestAnimationFrame(tick);
+            statObs.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.fw-stat-num').forEach(el => statObs.observe(el));
 </script>
 </body>
 </html>
