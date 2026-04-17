@@ -60,7 +60,7 @@
         .breadcrumb { display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:rgba(255,255,255,.38); margin-bottom:1.1rem; }
         .breadcrumb a { color:rgba(255,255,255,.38); text-decoration:none; transition:color .2s; }
         .breadcrumb a:hover { color:var(--yellow); }
-        .page-head h1 { font-size:clamp(2.4rem,5.5vw,4rem); font-weight:900; letter-spacing:-.04em; color:var(--white); margin-bottom:.7rem; }
+        .page-head h1 { font-size:clamp(3rem,6.5vw,5rem); font-weight:900; letter-spacing:-.05em; color:var(--white); margin-bottom:.7rem; }
         .page-head h1 span { color:var(--yellow); }
         .page-head p { font-size:1rem; color:rgba(255,255,255,.52); max-width:480px; line-height:1.65; }
 
@@ -93,8 +93,8 @@
         /* PRODUCT GRID */
         .prod-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:1.1rem; }
 
-        .prod-card { border:1.5px solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; background:var(--white); transition:all .28s ease; }
-        .prod-card:hover { border-color:var(--yellow); box-shadow:0 8px 36px rgba(0,0,0,.07); transform:translateY(-3px); }
+        .prod-card { border:1.5px solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; background:var(--white); box-shadow:0 2px 12px rgba(0,0,0,.05); transition:all .28s ease; }
+        .prod-card:hover { border-color:var(--yellow); box-shadow:0 12px 40px rgba(0,0,0,.09); transform:translateY(-4px); }
         .prod-card.dim { opacity:.62; }
         .prod-card.dim:hover { transform:none; box-shadow:none; border-color:var(--border); }
 
@@ -114,8 +114,8 @@
         .tag.online   { background:var(--off); color:var(--dark); }
         .tag.soon-tag { background:var(--purple-bg); color:var(--purple); }
 
-        .prod-card h3 { font-size:1.02rem; font-weight:800; margin-bottom:.4rem; letter-spacing:-.01em; line-height:1.3; }
-        .prod-card p  { color:var(--body); font-size:.84rem; line-height:1.62; margin-bottom:1.1rem; flex:1; }
+        .prod-card h3 { font-size:1.12rem; font-weight:800; margin-bottom:.4rem; letter-spacing:-.02em; line-height:1.28; }
+        .prod-card p  { color:var(--body); font-size:.95rem; line-height:1.68; margin-bottom:1.2rem; flex:1; }
 
         .prod-foot { display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
         .prod-price { font-size:1.32rem; font-weight:900; color:var(--dark); letter-spacing:-.02em; }
@@ -126,8 +126,8 @@
         .btn-soon { display:inline-block; background:var(--off); color:#ccc; padding:.58rem 1.05rem; border-radius:8px; font-weight:700; font-size:.78rem; cursor:not-allowed; }
 
         /* EVENTS in products page */
-        .ev-card { border:1.5px solid var(--border); border-radius:20px; overflow:hidden; background:var(--white); transition:all .28s ease; }
-        .ev-card:hover { border-color:var(--yellow); box-shadow:0 8px 36px rgba(0,0,0,.07); transform:translateY(-3px); }
+        .ev-card { border:1.5px solid var(--border); border-radius:20px; overflow:hidden; background:var(--white); box-shadow:0 2px 12px rgba(0,0,0,.05); transition:all .28s ease; }
+        .ev-card:hover { border-color:var(--yellow); box-shadow:0 12px 40px rgba(0,0,0,.09); transform:translateY(-4px); }
         .ev-bar { height:4px; }
         .ev-bar.live { background:var(--yellow); }
         .ev-bar.online { background:var(--charcoal); }
@@ -135,8 +135,8 @@
         .ev-pill { display:inline-flex; align-items:center; gap:.28rem; font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:.26rem .65rem; border-radius:50px; margin-bottom:.85rem; }
         .ev-pill.live { background:var(--yellow-bg); color:#7A5800; }
         .ev-pill.online { background:var(--off); color:var(--dark); }
-        .ev-card h3 { font-size:1.08rem; font-weight:800; margin-bottom:.55rem; letter-spacing:-.01em; line-height:1.3; }
-        .ev-card p  { color:var(--body); font-size:.85rem; line-height:1.62; margin-bottom:1.1rem; }
+        .ev-card h3 { font-size:1.18rem; font-weight:800; margin-bottom:.55rem; letter-spacing:-.02em; line-height:1.28; }
+        .ev-card p  { color:var(--body); font-size:.95rem; line-height:1.68; margin-bottom:1.2rem; }
         .ev-meta { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:1.3rem; }
         .ev-m { display:flex; align-items:center; gap:.28rem; font-size:.78rem; color:var(--muted); font-weight:500; }
         .ev-m svg { stroke:var(--muted); }

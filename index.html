@@ -117,20 +117,21 @@
         .hero h1 .hl { color:var(--yellow); }
 
         .hero-sub {
-            font-size:1.1rem; color:rgba(255,255,255,.55); line-height:1.75;
-            max-width:500px; margin-bottom:2.5rem;
+            font-size:1.2rem; color:rgba(255,255,255,.6); line-height:1.78;
+            max-width:540px; margin-bottom:2.75rem;
         }
 
         .hero-btns { display:flex; gap:.85rem; flex-wrap:wrap; margin-bottom:3.75rem; }
 
         .btn-yellow {
-            display:inline-flex; align-items:center; gap:.45rem;
+            display:inline-flex; align-items:center; gap:.5rem;
             background:var(--yellow); color:var(--dark);
-            padding:.88rem 1.9rem; border-radius:10px;
-            text-decoration:none; font-weight:700; font-size:.92rem;
+            padding:1rem 2.2rem; border-radius:10px;
+            text-decoration:none; font-weight:800; font-size:1rem;
+            letter-spacing:-.01em;
             border:2px solid var(--yellow); transition:all .2s;
         }
-        .btn-yellow:hover { background:var(--yellow-d); border-color:var(--yellow-d); transform:translateY(-1px); }
+        .btn-yellow:hover { background:var(--yellow-d); border-color:var(--yellow-d); transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,199,0,.35); }
 
         .btn-outline-white {
             display:inline-flex; align-items:center; gap:.45rem;
@@ -145,7 +146,7 @@
             display:flex; gap:3rem; flex-wrap:wrap;
             padding-top:2.75rem; border-top:1px solid rgba(255,255,255,.1);
         }
-        .stat .n { font-size:2.2rem; font-weight:900; color:var(--yellow); letter-spacing:-.04em; line-height:1; }
+        .stat .n { font-size:2.8rem; font-weight:900; color:var(--yellow); letter-spacing:-.05em; line-height:1; }
         .stat .l { font-size:.8rem; color:rgba(255,255,255,.4); font-weight:500; margin-top:.25rem; }
 
         /* ─── SECTION LABELS ─── */
@@ -158,11 +159,13 @@
         .sec-tag.dark { background:rgba(255,199,0,.12); color:var(--yellow); }
         .sec-tag.purple { background:var(--purple-bg); color:var(--purple); }
 
-        .sec-title { font-size:clamp(2.1rem,4.5vw,3.2rem); font-weight:900; letter-spacing:-.04em; line-height:1.08; color:var(--dark); margin-bottom:.85rem; }
+        .sec-title { font-size:clamp(2.8rem,5.5vw,4.5rem); font-weight:900; letter-spacing:-.04em; line-height:1.06; color:var(--dark); margin-bottom:1rem; }
         .sec-title.white { color:var(--white); }
         .sec-title .yl { color:var(--yellow); }
-        .sec-sub { font-size:1rem; color:var(--body); line-height:1.7; max-width:520px; margin-bottom:2.75rem; }
+        .sec-sub { font-size:1.12rem; color:var(--body); line-height:1.75; max-width:580px; margin-bottom:3rem; }
         .sec-sub.white { color:rgba(255,255,255,.55); }
+        .sec-head-center { text-align:center; }
+        .sec-head-center .sec-sub { margin-left:auto; margin-right:auto; }
 
         /* ─── WHAT WE OFFER (service cards) ─── */
         .services { padding:6rem 1.5rem; background:var(--cream); }
@@ -171,14 +174,15 @@
 
         .svc-card {
             border:1.5px solid var(--border); border-radius:20px;
-            padding:2rem; background:var(--white);
+            padding:2.25rem; background:var(--white);
             text-decoration:none; color:inherit; display:block;
+            box-shadow:0 2px 12px rgba(0,0,0,.05);
             transition:all .28s ease;
         }
         .svc-card:hover {
             border-color:var(--yellow);
-            box-shadow:0 8px 36px rgba(255,199,0,.13);
-            transform:translateY(-3px);
+            box-shadow:0 12px 40px rgba(255,199,0,.14);
+            transform:translateY(-4px);
         }
         .svc-card.faded { opacity:.6; border-style:dashed; }
         .svc-card.faded:hover { transform:none; box-shadow:none; border-color:var(--border); }
@@ -192,9 +196,9 @@
         }
         .icon-box svg { stroke:var(--yellow); }
 
-        .svc-card h3 { font-size:1.05rem; font-weight:800; margin-bottom:.45rem; letter-spacing:-.01em; color:var(--dark); }
-        .svc-card p { font-size:.86rem; color:var(--body); line-height:1.65; margin-bottom:1.1rem; }
-        .svc-link { display:inline-flex; align-items:center; gap:.3rem; font-size:.8rem; font-weight:700; color:var(--dark); }
+        .svc-card h3 { font-size:1.15rem; font-weight:800; margin-bottom:.5rem; letter-spacing:-.02em; color:var(--dark); }
+        .svc-card p { font-size:.95rem; color:var(--body); line-height:1.7; margin-bottom:1.2rem; }
+        .svc-link { display:inline-flex; align-items:center; gap:.3rem; font-size:.85rem; font-weight:700; color:var(--dark); }
         .svc-link svg { transition:transform .2s; }
         .svc-card:hover .svc-link svg { transform:translateX(4px); }
 
@@ -210,9 +214,10 @@
         .ev-card {
             background:var(--white); border-radius:20px;
             overflow:hidden; border:1.5px solid var(--border);
+            box-shadow:0 2px 12px rgba(0,0,0,.05);
             transition:all .28s ease;
         }
-        .ev-card:hover { border-color:var(--yellow); box-shadow:0 8px 36px rgba(0,0,0,.08); transform:translateY(-3px); }
+        .ev-card:hover { border-color:var(--yellow); box-shadow:0 12px 40px rgba(0,0,0,.1); transform:translateY(-4px); }
 
         .ev-bar { height:4px; }
         .ev-bar.live   { background:var(--yellow); }
@@ -230,8 +235,8 @@
         .ev-pill.online { background:var(--off); color:var(--dark); }
         .ev-pill.soon   { background:var(--off); color:var(--muted); }
 
-        .ev-card h3 { font-size:1.08rem; font-weight:800; margin-bottom:.55rem; letter-spacing:-.01em; line-height:1.3; }
-        .ev-card p  { color:var(--body); font-size:.85rem; line-height:1.62; margin-bottom:1.1rem; }
+        .ev-card h3 { font-size:1.18rem; font-weight:800; margin-bottom:.55rem; letter-spacing:-.02em; line-height:1.28; }
+        .ev-card p  { color:var(--body); font-size:.95rem; line-height:1.68; margin-bottom:1.2rem; }
 
         .ev-meta { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:1.3rem; }
         .ev-m { display:flex; align-items:center; gap:.28rem; font-size:.78rem; color:var(--muted); font-weight:500; }
@@ -260,9 +265,11 @@
         .prod-card {
             border:1.5px solid var(--border); border-radius:20px;
             overflow:hidden; display:flex; flex-direction:column;
-            background:var(--white); transition:all .28s ease;
+            background:var(--white);
+            box-shadow:0 2px 12px rgba(0,0,0,.05);
+            transition:all .28s ease;
         }
-        .prod-card:hover { border-color:var(--yellow); box-shadow:0 8px 36px rgba(0,0,0,.07); transform:translateY(-3px); }
+        .prod-card:hover { border-color:var(--yellow); box-shadow:0 12px 40px rgba(0,0,0,.09); transform:translateY(-4px); }
         .prod-card.dim { opacity:.6; }
         .prod-card.dim:hover { transform:none; box-shadow:none; border-color:var(--border); }
 
@@ -283,8 +290,8 @@
 
         .prod-body { padding:1.35rem; flex:1; display:flex; flex-direction:column; }
         .prod-type { font-size:.66rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin-bottom:.38rem; }
-        .prod-card h3 { font-size:1rem; font-weight:800; margin-bottom:.4rem; letter-spacing:-.01em; line-height:1.3; }
-        .prod-card p { color:var(--body); font-size:.84rem; line-height:1.62; margin-bottom:1.1rem; flex:1; }
+        .prod-card h3 { font-size:1.1rem; font-weight:800; margin-bottom:.4rem; letter-spacing:-.02em; line-height:1.28; }
+        .prod-card p { color:var(--body); font-size:.95rem; line-height:1.68; margin-bottom:1.2rem; flex:1; }
 
         .prod-foot { display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
         .prod-price { font-size:1.3rem; font-weight:900; color:var(--dark); letter-spacing:-.02em; }
@@ -321,9 +328,10 @@
         .why-card {
             background:var(--white); border-radius:22px;
             padding:2.25rem 2rem; border:1.5px solid var(--border);
+            box-shadow:0 2px 12px rgba(0,0,0,.05);
             transition:all .28s ease;
         }
-        .why-card:hover { border-color:var(--yellow); box-shadow:0 8px 36px rgba(0,0,0,.07); transform:translateY(-3px); }
+        .why-card:hover { border-color:var(--yellow); box-shadow:0 12px 40px rgba(0,0,0,.09); transform:translateY(-4px); }
         .why-icon {
             width:60px; height:60px; background:var(--charcoal);
             border-radius:16px; display:flex; align-items:center;
@@ -331,11 +339,11 @@
         }
         .why-icon svg { stroke:var(--yellow); }
         .why-card h3 {
-            font-size:1.08rem; font-weight:800; margin-bottom:.55rem;
-            line-height:1.3; letter-spacing:-.01em;
+            font-size:1.18rem; font-weight:800; margin-bottom:.55rem;
+            line-height:1.28; letter-spacing:-.02em;
         }
         .why-card h3 span { color:var(--yellow); }
-        .why-card p { color:var(--body); font-size:.85rem; line-height:1.68; }
+        .why-card p { color:var(--body); font-size:.95rem; line-height:1.7; }
 
         /* ─── HOW IT WORKS ─── */
         .how { padding:6rem 1.5rem; background:var(--charcoal); }
@@ -834,12 +842,14 @@
 <!-- ═══ WHAT WE OFFER ═══ -->
 <section class="services" id="services">
     <div class="wrap">
+        <div class="sec-head-center">
         <div class="sec-tag">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             What We Offer
         </div>
         <h2 class="sec-title">Everything a Telugu filmmaker needs</h2>
         <p class="sec-sub">From practical guides and AI tools to live workshops — all built specifically for Telugu filmmakers.</p>
+        </div>
 
         <div class="svc-grid">
 
@@ -1117,9 +1127,11 @@
 <!-- ═══ WHY FILMIVEDA ═══ -->
 <section class="why" id="why">
     <div class="wrap">
+        <div class="sec-head-center">
         <div class="sec-tag purple">Why Filmiveda?</div>
         <h2 class="sec-title">Built for <span class="yl">Telugu</span> filmmakers,<br>actors &amp; writers</h2>
         <p class="sec-sub">Everything a Telugu storyteller needs — in one place, at prices that make sense.</p>
+        </div>
 
         <div class="why-grid">
 
@@ -1184,9 +1196,11 @@
 <!-- ═══ HOW IT WORKS ═══ -->
 <section class="how" id="how">
     <div class="wrap">
+        <div class="sec-head-center">
         <div class="sec-tag dark">How It Works</div>
         <h2 class="sec-title white">Simple. <span class="yl">Fast.</span> Instant.</h2>
         <p class="sec-sub white">Get your resources in 4 easy steps. No accounts needed for most products.</p>
+        </div>
         <div class="how-grid">
             <div class="how-step fi">
                 <div class="how-num">1</div>
