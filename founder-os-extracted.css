@@ -1,0 +1,298 @@
+/*
+ * Extracted CSS Design System — Founder OS (founderos.com)
+ * Categories: Fonts · Colors · Effects · Patterns · Animations
+ */
+
+/* ═══════════════════════════════════════════
+   1. FONTS
+   Source: Google Fonts via WebFont.load()
+═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-primary:   'Archivo',   sans-serif;   /* body & headings */
+  --font-secondary: 'Poppins',   sans-serif;   /* UI labels, nav  */
+  --font-accent:    'Quicksand', sans-serif;   /* eyebrow / badge */
+}
+
+/*
+ * Font weight tokens used on site:
+ *   300 = light
+ *   400 = regular
+ *   500 = medium
+ *   600 = semibold
+ *   700 = bold
+ */
+
+
+/* ═══════════════════════════════════════════
+   2. COLORS
+   Inferred from class names, inline styles,
+   and semantic usage in the HTML.
+═══════════════════════════════════════════ */
+
+:root {
+  /* Core palette */
+  --color-black:        #000000;
+  --color-white:        #ffffff;
+  --color-off-white:    #f7f7f7;   /* body / section backgrounds */
+
+  /* Brand green (used for dot indicators & accents) */
+  --color-green:        #22c55e;   /* .bbm-green-dot-3 */
+  --color-green-dark:   #16a34a;
+
+  /* Neutral text */
+  --color-text:         #1a1a1a;   /* primary body copy */
+  --color-muted:        #555555;   /* subheadings / disclaimers */
+  --color-light-text:   #888888;   /* small print, captions */
+
+  /* Overlay */
+  --color-overlay:      rgba(0,0,0,0.70);  /* modal backdrop */
+
+  /* Borders */
+  --color-border:       rgba(0,0,0,0.10);
+}
+
+
+/* ═══════════════════════════════════════════
+   3. EFFECTS
+═══════════════════════════════════════════ */
+
+/* 3a. Box Shadows */
+.shadow-sm  { box-shadow: 0 2px 8px  rgba(0,0,0,0.06); }
+.shadow-md  { box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+.shadow-pop { box-shadow: gray 0px 0px 5px; }          /* reCAPTCHA badge style */
+
+/* 3b. Backdrop blur (navbar glass effect) */
+.blur-nav {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* 3c. Anti-flicker (A/B testing hide) */
+.anti-flicker,
+.anti-flicker * {
+  visibility: hidden !important;
+  opacity:    0       !important;
+}
+
+/* 3d. Visibility toggle */
+[data-hidden-variation],
+[data-hidden-variation] * {
+  display: none !important;
+}
+
+/* 3e. Outline suppression for programmatic focus */
+.force-outline-none[tabindex="-1"]:focus { outline: none; }
+
+/* 3f. Scroll offset for sticky nav (section anchor) */
+#newsletter { scroll-margin-top: 200px; }
+
+
+/* ═══════════════════════════════════════════
+   4. PATTERNS (Layout & Components)
+═══════════════════════════════════════════ */
+
+/* 4a. Global container */
+.global-container {
+  max-width: 1200px;
+  margin:    0 auto;
+  padding:   0 1.5rem;
+}
+
+/* 4b. Sticky navigation */
+.outer-nav {
+  position:   fixed;
+  top:        0;
+  width:      100%;
+  z-index:    1000;
+  transition: box-shadow 0.3s ease;
+}
+.outer-nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+/* 4c. Flexbox nav row */
+.navigation {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+}
+
+/* 4d. Logo carousel (Owl Carousel override) */
+.logo-carousel .owl-stage {
+  display:     flex;
+  align-items: center;
+}
+
+/* 4e. 3D transform preservation (card flip / arrow rotation) */
+.preserve-3d { transform-style: preserve-3d; }
+
+/* 4f. Arrow icon at 45° (used on branch cards) */
+.arrow-diagonal {
+  transform:       rotateZ(45deg);
+  transform-style: preserve-3d;
+}
+
+/* 4g. Progress bar (multi-step form) */
+.form-progress-bar {
+  width:      0%;               /* set via JS, e.g. 33.33% per step */
+  height:     4px;
+  background: var(--color-green);
+  transition: width 0.3s ease;
+}
+.form-progress-track {
+  position: relative;
+  width:    100%;
+  height:   4px;
+  background: var(--color-border);
+}
+
+/* 4h. CTA button base pattern */
+.button {
+  display:          inline-block;
+  padding:          0.75rem 1.75rem;
+  font-family:      var(--font-secondary);
+  font-weight:      600;
+  font-size:        0.875rem;
+  letter-spacing:   0.06em;
+  text-transform:   uppercase;
+  background:       var(--color-black);
+  color:            var(--color-white);
+  border-radius:    4px;
+  border:           none;
+  cursor:           pointer;
+  text-decoration:  none;
+  transition:       background 0.2s ease, transform 0.15s ease;
+}
+.button:hover {
+  background:  #333333;
+  transform:   translateY(-1px);
+}
+
+/* 4i. Eyebrow badge block */
+.eyebrow-block {
+  display:     flex;
+  align-items: center;
+  gap:         0.5rem;
+}
+.green-dot {
+  width:         8px;
+  height:        8px;
+  border-radius: 50%;
+  background:    var(--color-green);
+}
+
+/* 4j. Grid — community / foundation cards */
+.community-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:                   1.5rem;
+}
+.grid-box {
+  border-radius: 12px;
+  overflow:      hidden;
+  background:    var(--color-white);
+  border:        1px solid var(--color-border);
+  padding:       2rem;
+}
+
+/* 4k. Testimonial / long card */
+.ft-long-card {
+  display:     flex;
+  gap:         1.5rem;
+  padding:     2rem;
+  border:      1px solid var(--color-border);
+  border-radius: 12px;
+}
+@media (max-width: 768px) {
+  .ft-long-card { flex-direction: column; }
+}
+
+/* 4l. Social icon row */
+.social-icons {
+  display:     flex;
+  align-items: center;
+  gap:         1rem;
+}
+.social-link {
+  display:    inline-flex;
+  width:      24px;
+  height:     24px;
+  color:      var(--color-black);
+  transition: opacity 0.2s ease;
+}
+.social-link:hover { opacity: 0.6; }
+
+/* 4m. Modal overlay */
+.modal-overlay {
+  position:         fixed;
+  inset:            0;
+  background:       var(--color-overlay);
+  opacity:          0;
+  z-index:          9989;
+  pointer-events:   none;
+  transition:       opacity 0.3s ease-in;
+}
+.modal-overlay.active {
+  opacity:        0.8;
+  pointer-events: all;
+}
+
+/* 4n. Centered modal container */
+.modal-container {
+  position:   fixed;
+  z-index:    9999;
+  max-height: 95%;
+  max-width:  95%;
+  top:        50%;
+  left:       50%;
+  transform:  translate(-50%, -50%) translateY(100vh);
+  transition: transform 0.75s linear(
+    0, 0.006, 0.023 2.2%, 0.096 4.8%, 0.532 15.4%,
+    0.72 21%, 0.793, 0.853 26.7%, 0.902, 0.941,
+    0.968 36.2%, 0.987 39.7%, 1 43.7%, 1.007 48.3%,
+    1.009 55.3%, 1.002 78.2%, 1
+  );
+}
+.modal-container.open {
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+
+/* ═══════════════════════════════════════════
+   5. ANIMATIONS
+═══════════════════════════════════════════ */
+
+/* 5a. Infinite logo carousel slide (linear, seamless) */
+@keyframes carouselSlide {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.carousel-track {
+  display:   flex;
+  animation: carouselSlide 6s linear infinite;
+  will-change: transform;
+}
+.carousel-track:hover { animation-play-state: paused; }
+
+/* 5b. Fade-in on scroll (intersection observer trigger) */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity:   0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* 5c. Opacity fade-in (modal / overlay appear) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 5d. Smooth right-slide (badge / notification) */
+.slide-in-right {
+  transition: right 0.3s ease;
+}
